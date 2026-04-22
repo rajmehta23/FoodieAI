@@ -1,0 +1,6 @@
+{
+  "name": "Foodie",
+  "description": "Smart menu recommendations and order history. Get personalized food suggestions based on your tastes.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}

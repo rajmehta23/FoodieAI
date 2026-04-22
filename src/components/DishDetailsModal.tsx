@@ -1,0 +1,150 @@
+import React from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+import { X, Star, Clock, Flame, Info, CheckCircle2, ShoppingBag, Heart } from 'lucide-react';
+import { Dish } from '../types';
+
+interface DishDetailsModalProps {
+  dish: Dish | null;
+  onClose: () => void;
+  onOrder: (dish: Dish) => void;
+  onToggleFavorite: (id: string) => void;
+  isFavorite: boolean;
+}
+
+export const DishDetailsModal: React.FC<DishDetailsModalProps> = ({
+  dish,
+  onClose,
+  onOrder,
+  onToggleFavorite,
+  isFavorite
+}) => {
+  if (!dish) return null;
+
+  return (
+    <div className="fixed inset-0 z-[110] flex items-center justify-center p-4">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        onClick={onClose}
+        className="absolute inset-0 bg-slate-950/60 backdrop-blur-md"
+      />
+      
+      <motion.div
+        layoutId={`dish-card-${dish.id}`}
+        initial={{ opacity: 0, scale: 0.9, y: 20 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.9, y: 20 }}
+        className="relative w-full max-w-2xl bg-white dark:bg-slate-900 rounded-[40px] shadow-2xl overflow-hidden overflow-y-auto max-h-[90vh] no-scrollbar"
+      >
+        <button 
+          onClick={onClose}
+          className="absolute top-6 right-6 z-10 p-2 bg-white/20 dark:bg-black/20 backdrop-blur-xl rounded-full text-white hover:bg-white/40 transition-all"
+        >
+          <X className="w-6 h-6" />
+        </button>
+
+        <div className="relative h-72 sm:h-96">
+          <img 
+            src={dish.image} 
+            alt={dish.name}
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-slate-900 via-transparent to-transparent" />
+          
+          <div className="absolute bottom-8 left-8 right-8">
+             <div className="flex flex-wrap gap-2 mb-4">
+                <span className="px-3 py-1 bg-primary-light text-white text-[10px] font-bold rounded-full uppercase tracking-wider">{dish.cuisine}</span>
+                <span className="px-3 py-1 bg-white/20 backdrop-blur-md text-white text-[10px] font-bold rounded-full uppercase tracking-wider border border-white/20">{dish.category}</span>
+             </div>
+             <h2 className="text-4xl font-display font-black text-slate-900 dark:text-white leading-tight">{dish.name}</h2>
+          </div>
+        </div>
+
+        <div className="p-8 sm:p-10 space-y-10">
+          <div className="flex flex-wrap items-center gap-8 border-b border-slate-100 dark:border-slate-800 pb-8">
+            <div className="flex flex-col">
+              <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Rating</span>
+              <div className="flex items-center gap-1.5 text-amber-500">
+                <Star className="w-5 h-5 fill-amber-500" />
+                <span className="text-xl font-bold">{dish.rating}</span>
+                <span className="text-slate-400 text-sm font-medium">(250+ reviews)</span>
+              </div>
+            </div>
+            
+            <div className="flex flex-col">
+              <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Price</span>
+              <span className="text-3xl font-display font-black text-slate-900 dark:text-white">₹{dish.price}</span>
+            </div>
+
+            {dish.prepTime && (
+              <div className="flex flex-col">
+                <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Time</span>
+                <div className="flex items-center gap-2 text-slate-600 dark:text-slate-300">
+                  <Clock className="w-5 h-5" />
+                  <span className="text-lg font-bold">{dish.prepTime}</span>
+                </div>
+              </div>
+            )}
+
+            {dish.calories && (
+              <div className="flex flex-col">
+                <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Energy</span>
+                <div className="flex items-center gap-2 text-slate-600 dark:text-slate-300">
+                  <Flame className="w-5 h-5" />
+                  <span className="text-lg font-bold">{dish.calories} kcal</span>
+                </div>
+              </div>
+            )}
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <div className="space-y-4">
+              <div className="flex items-center gap-2 text-slate-900 dark:text-white">
+                <Info className="w-5 h-5 text-primary-light" />
+                <h3 className="font-display font-bold text-xl">Description</h3>
+              </div>
+              <p className="text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
+                {dish.description} Our chefs use only the freshest, locally sourced ingredients to ensure every bite is a celebration of flavor and health.
+              </p>
+            </div>
+
+            {dish.ingredients && (
+              <div className="space-y-4">
+                <div className="flex items-center gap-2 text-slate-900 dark:text-white">
+                  <ShoppingBag className="w-5 h-5 text-accent" />
+                  <h3 className="font-display font-bold text-xl">Key Ingredients</h3>
+                </div>
+                <div className="grid grid-cols-2 gap-3">
+                  {dish.ingredients.map(ing => (
+                    <div key={ing} className="flex items-center gap-2 text-slate-500 text-sm">
+                      <CheckCircle2 className="w-4 h-4 text-green-500" />
+                      {ing}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+
+          <div className="flex flex-col sm:flex-row items-center gap-4 pt-6">
+            <button 
+              onClick={() => onOrder(dish)}
+              className="w-full sm:flex-1 bg-gradient-to-r from-primary-light to-primary-dark text-white font-bold py-5 rounded-[24px] flex items-center justify-center gap-3 transition-all hover:scale-[1.02] active:scale-[0.98] shadow-xl shadow-primary-light/20"
+            >
+              <ShoppingBag className="w-5 h-5" />
+              Add to Cart • ₹{dish.price}
+            </button>
+            <button 
+              onClick={() => onToggleFavorite(dish.id)}
+              className={`w-full sm:w-auto px-8 py-5 rounded-[24px] font-bold border-2 transition-all flex items-center justify-center gap-2 ${isFavorite ? 'bg-red-500/10 border-red-500 text-red-500' : 'bg-slate-50 dark:bg-slate-800 border-slate-100 dark:border-slate-700 hover:border-red-500/30'}`}
+            >
+              <Heart className={`w-5 h-5 ${isFavorite ? 'fill-current' : ''}`} />
+              {isFavorite ? 'Favorited' : 'Save'}
+            </button>
+          </div>
+        </div>
+      </motion.div>
+    </div>
+  );
+};
