@@ -2,10 +2,25 @@ import { GoogleGenAI, Type } from "@google/genai";
 import { UserProfile, Dish } from "../types";
 import { MENU_DATA } from "../constants";
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+// Lazy initialization to prevent crashing if key is missing during build
+let aiInstance: GoogleGenAI | null = null;
+const getAI = () => {
+  const key = process.env.GEMINI_API_KEY;
+  if (!key) {
+    console.warn("GEMINI_API_KEY is missing. AI features will use fallback logic.");
+    return null;
+  }
+  if (!aiInstance) {
+    aiInstance = new GoogleGenAI({ apiKey: key });
+  }
+  return aiInstance;
+};
 
 export async function getPersonalizedRecommendations(profile: UserProfile): Promise<{ dishId: string; reason: string; badge: string }[]> {
   try {
+    const ai = getAI();
+    if (!ai) throw new Error("AI not configured");
+
     const prompt = `User: ${profile.dietary}, ${profile.spice}, Cuisines: ${profile.cuisines.join(", ")}, Allergies: ${profile.allergies.join(", ")}, Budget: ${profile.budget}.
     Menu IDs/Data: ${MENU_DATA.map(d => `${d.id}: ${d.name}, ${d.price}, ${d.cuisine}, ${d.dietary}, ${d.spice}`).join("|")}.
     Recommend 4 dishes match User. JSON array: [{dishId: string, reason: string, badge: string (values: "For You", "Matches Spice Preference", "Popular in Cuisine", "Budget Friendly")}]`;
@@ -49,6 +64,9 @@ export async function getPersonalizedRecommendations(profile: UserProfile): Prom
 
 export async function getSurpriseMe(profile: UserProfile): Promise<{ dishId: string; reason: string }[]> {
   try {
+    const ai = getAI();
+    if (!ai) throw new Error("AI not configured");
+
     const prompt = `Profile: ${profile.dietary}, ${profile.spice}, Allergies: ${profile.allergies.join(", ")}, Budget: ${profile.budget}.
     Menu: ${MENU_DATA.map(d => `${d.id}: ${d.name}, ${d.price}, ${d.cuisine}, ${d.dietary}, ${d.spice}`).join("|")}.
     Select 3 random surprise dishes. JSON array: [{ "dishId": "id", "reason": "creative short reason" }]`;
