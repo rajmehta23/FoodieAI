@@ -1,6 +1,6 @@
 import React from 'react';
 import { User as UserType } from '../types';
-import { Search, History, Heart, User, Sun, Moon, LayoutGrid, Mic, MicOff, LogOut, ShoppingCart, ArrowLeft } from 'lucide-react';
+import { Search, History, Heart, User, Sun, Moon, LayoutGrid, Mic, MicOff, LogOut, ShoppingCart, ArrowLeft, Sparkles } from 'lucide-react';
 
 interface NavbarProps {
   activeSection: string;
@@ -15,6 +15,7 @@ interface NavbarProps {
   onLogout: () => void;
   onOpenCart: () => void;
   cartCount: number;
+  onOpenOnboarding: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({ 
@@ -29,7 +30,8 @@ export const Navbar: React.FC<NavbarProps> = ({
   currentUser,
   onLogout,
   onOpenCart,
-  cartCount
+  cartCount,
+  onOpenOnboarding
 }) => {
   return (
     <nav className="sticky top-0 z-50 w-full px-4 py-3">
@@ -89,6 +91,13 @@ export const Navbar: React.FC<NavbarProps> = ({
                     {cartCount}
                   </span>
                 )}
+              </button>
+              <button 
+                onClick={onOpenOnboarding}
+                className="p-2 rounded-xl transition-all hover:bg-amber-100 dark:hover:bg-amber-900/20 text-amber-500"
+                title="Quick Taste Setup"
+              >
+                <Sparkles className="w-5 h-5" />
               </button>
               <button 
                 onClick={() => setActiveSection('favorites')}

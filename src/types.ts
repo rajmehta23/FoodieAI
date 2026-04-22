@@ -55,6 +55,7 @@ export interface Dish {
   ingredients?: string[];
   calories?: number;
   prepTime?: string;
+  allergies?: Allergy[];
 }
 
 export interface CartItem {

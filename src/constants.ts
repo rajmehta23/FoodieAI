@@ -1,4 +1,4 @@
-import { Cuisine, DietaryPreference, Dish, SpiceLevel } from "./types";
+import { Allergy, Cuisine, DietaryPreference, Dish, SpiceLevel } from "./types";
 
 export const MENU_DATA: Dish[] = [
   {
@@ -14,7 +14,8 @@ export const MENU_DATA: Dish[] = [
     description: "Creamy cottage cheese cubes in a rich tomato-based gravy.",
     ingredients: ["Paneer", "Tomato", "Cream", "Butter", "Spices"],
     calories: 450,
-    prepTime: "25 mins"
+    prepTime: "25 mins",
+    allergies: [Allergy.DAIRY]
   },
   {
     id: "2",
@@ -29,7 +30,8 @@ export const MENU_DATA: Dish[] = [
     description: "Fragrant basmati rice cooked with succulent chicken and aromatic spices.",
     ingredients: ["Basmati Rice", "Chicken", "Saffron", "Yogurt", "Mint"],
     calories: 620,
-    prepTime: "45 mins"
+    prepTime: "45 mins",
+    allergies: [Allergy.DAIRY]
   },
   {
     id: "3",
@@ -44,7 +46,8 @@ export const MENU_DATA: Dish[] = [
     description: "Spicy stir-fried noodles with crisp vegetables and Schezwan sauce.",
     ingredients: ["Wheat Noodles", "Bell Peppers", "Carrot", "Schezwan Sauce", "Spring Onion"],
     calories: 380,
-    prepTime: "15 mins"
+    prepTime: "15 mins",
+    allergies: [Allergy.GLUTEN]
   },
   {
     id: "4",
@@ -56,7 +59,8 @@ export const MENU_DATA: Dish[] = [
     spice: SpiceLevel.MILD,
     image: "https://images.unsplash.com/photo-1574071318508-1cdbad80ad38?auto=format&fit=crop&q=80&w=800",
     category: "Pizza",
-    description: "Classic pizza with tomato sauce, fresh mozzarella, and basil."
+    description: "Classic pizza with tomato sauce, fresh mozzarella, and basil.",
+    allergies: [Allergy.DAIRY, Allergy.GLUTEN]
   },
   {
     id: "5",

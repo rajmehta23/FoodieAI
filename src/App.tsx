@@ -11,6 +11,7 @@ import { AuthForm } from './components/AuthForm';
 import { Cart } from './components/Cart';
 import { SurpriseMeResults } from './components/SurpriseMeResults';
 import { DishDetailsModal } from './components/DishDetailsModal';
+import { OnboardingModal } from './components/OnboardingModal';
 import { storageService } from './services/storageService';
 import { getPersonalizedRecommendations, getSurpriseMe } from './services/geminiService';
 import { MENU_DATA } from './constants';
@@ -34,6 +35,7 @@ export default function App() {
   const [isAiLoading, setIsAiLoading] = useState(false);
   const [isPlacingOrder, setIsPlacingOrder] = useState(false);
   const [exploredDish, setExploredDish] = useState<Dish | null>(null);
+  const [isOnboardingOpen, setIsOnboardingOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [isListening, setIsListening] = useState(false);
   const [showNotification, setShowNotification] = useState<{ show: boolean, message: string }>({ show: false, message: '' });
@@ -56,7 +58,7 @@ export default function App() {
     setUserProfile(profile);
     
     if (!profile) {
-      setActiveSection('preferences');
+      setIsOnboardingOpen(true);
       setShowNotification({ show: true, message: `Welcome ${user.name}! Let's set your preferences.` });
     } else {
       setActiveSection('home');
@@ -224,6 +226,19 @@ export default function App() {
     setFavorites(storageService.getFavorites());
   };
 
+  const handleSaveProfile = (profile: UserProfile) => {
+    storageService.saveProfile(profile);
+    storageService.clearRecommendationsCache();
+    setUserProfile(profile);
+    setIsOnboardingOpen(false);
+    setActiveSection('home');
+    setShowNotification({ show: true, message: 'Taste profile updated!' });
+    setTimeout(() => setShowNotification({ show: false, message: '' }), 3000);
+    
+    // Refresh recommendations
+    loadRecommendations(profile, true);
+  };
+
   const handleSurpriseMe = async () => {
     if (!currentUser) {
       setActiveSection('auth');
@@ -286,6 +301,7 @@ export default function App() {
         onLogout={handleLogout}
         onOpenCart={() => setIsCartOpen(true)}
         cartCount={cart.reduce((sum, item) => sum + item.quantity, 0)}
+        onOpenOnboarding={() => setIsOnboardingOpen(true)}
       />
 
       <main className="max-w-7xl mx-auto px-4 pb-20 overflow-x-hidden">
@@ -429,14 +445,7 @@ export default function App() {
             >
               <PreferencesForm 
                 initialProfile={userProfile} 
-                onSave={(p) => {
-                  storageService.saveProfile(p);
-                  storageService.clearRecommendationsCache();
-                  setUserProfile(p);
-                  setActiveSection('home');
-                  setShowNotification({ show: true, message: 'Taste profile updated!' });
-                  setTimeout(() => setShowNotification({ show: false, message: '' }), 3000);
-                }} 
+                onSave={handleSaveProfile} 
               />
             </motion.div>
           )}
@@ -494,6 +503,18 @@ export default function App() {
             }}
             onToggleFavorite={handleToggleFavorite}
             isFavorite={favorites.includes(exploredDish.id)}
+          />
+        )}
+      </AnimatePresence>
+
+      {/* Onboarding Preference Modal */}
+      <AnimatePresence>
+        {isOnboardingOpen && (
+          <OnboardingModal 
+            isOpen={isOnboardingOpen}
+            onClose={() => setIsOnboardingOpen(false)}
+            onSave={handleSaveProfile}
+            initialProfile={userProfile}
           />
         )}
       </AnimatePresence>

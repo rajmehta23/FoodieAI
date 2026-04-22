@@ -53,5 +53,24 @@ If you'd like to run this code on your own machine:
 
 ---
 
+## 🌐 Deployment to GitHub Pages
+
+If you are deploying this app to your own GitHub, follow these critical steps to make it work:
+
+1. **Enable GitHub Actions for Pages:**
+   - Go to your repository **Settings** > **Pages**.
+   - Under **Build and deployment** > **Source**, select **"GitHub Actions"**.
+
+2. **Add Gemini API Key (Secret):**
+   - Go to **Settings** > **Secrets and variables** > **Actions**.
+   - Click **New repository secret**.
+   - Name: `GEMINI_API_KEY`
+   - Secret: (Paste your API key here).
+
+3. **Check Deploy Progress:**
+   - Go to the **Actions** tab in your repo to see the progress. Once it's green, your app is live!
+
+---
+
 ### 🌟 Credits
 Designed with ❤️ for a premium food exploration experience.

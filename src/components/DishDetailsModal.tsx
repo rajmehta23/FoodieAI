@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, Star, Clock, Flame, Info, CheckCircle2, ShoppingBag, Heart, ChevronRight } from 'lucide-react';
+import { X, Star, Clock, Flame, Info, CheckCircle2, ShoppingBag, Heart, ChevronRight, ShieldAlert } from 'lucide-react';
 import { Dish } from '../types';
 
 interface DishDetailsModalProps {
@@ -115,6 +115,34 @@ export const DishDetailsModal: React.FC<DishDetailsModalProps> = ({
               <p className="text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
                 {dish.description} Our chefs use only the freshest, locally sourced ingredients to ensure every bite is a celebration of flavor and health.
               </p>
+
+              <div className="pt-4 space-y-4">
+                <div className="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-slate-100 dark:border-slate-800">
+                  <div className="flex items-center gap-2">
+                    <Flame className={`w-5 h-5 ${dish.spice === 'Spicy' ? 'text-red-500' : dish.spice === 'Medium' ? 'text-amber-500' : 'text-green-500'}`} />
+                    <span className="text-sm font-bold text-slate-500 uppercase tracking-wider">Spice Level</span>
+                  </div>
+                  <span className={`font-black uppercase text-xs px-3 py-1 rounded-full ${dish.spice === 'Spicy' ? 'bg-red-500/10 text-red-500' : dish.spice === 'Medium' ? 'bg-amber-500/10 text-amber-500' : 'bg-green-500/10 text-green-500'}`}>
+                    {dish.spice}
+                  </span>
+                </div>
+
+                {dish.allergies && dish.allergies.length > 0 && (
+                  <div className="p-4 bg-red-50 dark:bg-red-900/10 rounded-2xl border border-red-100 dark:border-red-900/20">
+                    <div className="flex items-center gap-2 mb-2">
+                      <ShieldAlert className="w-5 h-5 text-red-500" />
+                      <span className="text-sm font-bold text-red-500 uppercase tracking-wider">Allergy Information</span>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {dish.allergies.map(a => (
+                        <span key={a} className="bg-red-500 text-white text-[10px] font-black px-2 py-0.5 rounded-md uppercase tracking-tighter">
+                          Contains {a}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
 
             {dish.ingredients && (
