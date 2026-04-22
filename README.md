@@ -47,7 +47,7 @@ We are a team of passionate foodies and engineers dedicated to improving the way
 
 | Contributor | Role |
 | :--- | :--- |
-| **Prince Mehta** (@rajmehta23) | Founder & Lead Product Designer |
+| **Rajnish Kumar** (@rajmehta23) | Founder & Lead Product Designer |
 | **Amanjeet Sinha** (@debugging03) | Systems Architect & Lead Debugger |
 | **Ankit Kumar** (@ankityadav-08) | Quality Assurance Engineer |
 | **Nikhil Anand** (@Nikhilanand265) | UX Research & Quality Audit |
