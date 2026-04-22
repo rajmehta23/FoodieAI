@@ -7,7 +7,7 @@ Welcome to **Foodie**, the next-generation food discovery and ordering platform.
 ## 🚀 Experience it Now!
 
 **Try the live app here:**
-### [👉 Click to Open Foodie App 👈](https://ais-pre-jhjsu5yke7ci6p6mkierbv-863938179361.asia-southeast1.run.app)
+### [👉 Click to Open Foodie App 👈](https://rajmehta23.github.io/FoodieAI/)
 
 ---
 
