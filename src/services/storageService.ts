@@ -1,12 +1,12 @@
 import { UserProfile, Order, User, CartItem, Dish } from "../types";
 
-const PROFILE_KEY = "foodie_ai_profile";
-const ORDERS_KEY = "foodie_ai_orders";
-const FAVORITES_KEY = "foodie_ai_favorites";
-const USERS_KEY = "foodie_ai_users";
-const CURRENT_USER_KEY = "foodie_ai_current_user";
-const RECS_CACHE_KEY = "foodie_ai_recs_cache";
-const CART_KEY = "foodie_ai_cart";
+const PROFILE_KEY = "foodie_profile";
+const ORDERS_KEY = "foodie_orders";
+const FAVORITES_KEY = "foodie_favorites";
+const USERS_KEY = "foodie_users";
+const CURRENT_USER_KEY = "foodie_current_user";
+const RECS_CACHE_KEY = "foodie_recs_cache";
+const CART_KEY = "foodie_cart";
 
 export const storageService = {
   // Auth

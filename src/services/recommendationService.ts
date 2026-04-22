@@ -3,30 +3,30 @@ import { UserProfile, Dish } from "../types";
 import { MENU_DATA } from "../constants";
 
 // Lazy initialization to prevent crashing if key is missing during build
-let aiInstance: GoogleGenAI | null = null;
-const getAI = () => {
+let engineInstance: GoogleGenAI | null = null;
+const getEngine = () => {
   const key = process.env.GEMINI_API_KEY;
   if (!key) {
-    console.warn("GEMINI_API_KEY is missing. AI features will use fallback logic.");
+    console.warn("Recommendation key is missing. Features will use fallback logic.");
     return null;
   }
-  if (!aiInstance) {
-    aiInstance = new GoogleGenAI({ apiKey: key });
+  if (!engineInstance) {
+    engineInstance = new GoogleGenAI({ apiKey: key });
   }
-  return aiInstance;
+  return engineInstance;
 };
 
 export async function getPersonalizedRecommendations(profile: UserProfile): Promise<{ dishId: string; reason: string; badge: string }[]> {
   try {
-    const ai = getAI();
-    if (!ai) throw new Error("AI not configured");
+    const engine = getEngine();
+    if (!engine) throw new Error("Service not configured");
 
     const prompt = `User: ${profile.dietary}, ${profile.spice}, Cuisines: ${profile.cuisines.join(", ")}, Allergies: ${profile.allergies.join(", ")}, Budget: ${profile.budget}.
     Menu IDs/Data: ${MENU_DATA.map(d => `${d.id}: ${d.name}, ${d.price}, ${d.cuisine}, ${d.dietary}, ${d.spice}`).join("|")}.
     Recommend 4 dishes match User. JSON array: [{dishId: string, reason: string, badge: string (values: "For You", "Matches Spice Preference", "Popular in Cuisine", "Budget Friendly")}]`;
 
-    const response = await ai.models.generateContent({
-      model: "gemini-1.5-flash", // Using flash for fast menu recommendations
+    const response = await engine.models.generateContent({
+      model: "gemini-1.5-flash", // Fast menu processing
       contents: prompt,
       config: {
         responseMimeType: "application/json",
@@ -49,7 +49,7 @@ export async function getPersonalizedRecommendations(profile: UserProfile): Prom
     if (!text) return [];
     return JSON.parse(text);
   } catch (error) {
-    console.error("AI Recommendation Error:", error);
+    console.error("Personalization Error:", error);
     // Fallback: simple filtering
     return MENU_DATA
       .filter(d => d.dietary === profile.dietary && profile.cuisines.includes(d.cuisine) && d.price <= profile.budget)
@@ -64,14 +64,14 @@ export async function getPersonalizedRecommendations(profile: UserProfile): Prom
 
 export async function getSurpriseMe(profile: UserProfile): Promise<{ dishId: string; reason: string }[]> {
   try {
-    const ai = getAI();
-    if (!ai) throw new Error("AI not configured");
+    const engine = getEngine();
+    if (!engine) throw new Error("Service not configured");
 
     const prompt = `Profile: ${profile.dietary}, ${profile.spice}, Allergies: ${profile.allergies.join(", ")}, Budget: ${profile.budget}.
     Menu: ${MENU_DATA.map(d => `${d.id}: ${d.name}, ${d.price}, ${d.cuisine}, ${d.dietary}, ${d.spice}`).join("|")}.
     Select 3 random surprise dishes. JSON array: [{ "dishId": "id", "reason": "creative short reason" }]`;
 
-    const response = await ai.models.generateContent({
+    const response = await engine.models.generateContent({
       model: "gemini-1.5-flash",
       contents: prompt,
       config: {
@@ -94,7 +94,7 @@ export async function getSurpriseMe(profile: UserProfile): Promise<{ dishId: str
     if (!text) return [];
     return JSON.parse(text);
   } catch (error) {
-    console.error("AI Surprise Me Error:", error);
+    console.error("Discovery Error:", error);
     return MENU_DATA.sort(() => 0.5 - Math.random()).slice(0, 3).map(d => ({
       dishId: d.id,
       reason: "A delicious random pick just for you!"

@@ -13,7 +13,7 @@ import { SurpriseMeResults } from './components/SurpriseMeResults';
 import { DishDetailsModal } from './components/DishDetailsModal';
 import { OnboardingModal } from './components/OnboardingModal';
 import { storageService } from './services/storageService';
-import { getPersonalizedRecommendations, getSurpriseMe } from './services/geminiService';
+import { getPersonalizedRecommendations, getSurpriseMe } from './services/recommendationService';
 import { MENU_DATA } from './constants';
 import { UserProfile, Dish, Recommendation, Order, DietaryPreference, Cuisine, SpiceLevel, User, CartItem } from './types';
 import { Sparkles, ShoppingBag, ArrowRight, Loader2, Search, Filter, Trash2, Heart, User as UserIcon } from 'lucide-react';
@@ -32,7 +32,7 @@ export default function App() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [recommendations, setRecommendations] = useState<Recommendation[]>([]);
   const [surprisePicks, setSurprisePicks] = useState<{ dishId: string; reason: string }[]>([]);
-  const [isAiLoading, setIsAiLoading] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false);
   const [isPlacingOrder, setIsPlacingOrder] = useState(false);
   const [exploredDish, setExploredDish] = useState<Dish | null>(null);
   const [isOnboardingOpen, setIsOnboardingOpen] = useState(false);
@@ -162,7 +162,7 @@ export default function App() {
       }
     }
 
-    setIsAiLoading(true);
+    setIsProcessing(true);
     const recs = await getPersonalizedRecommendations(profile);
     storageService.saveRecommendationsCache(recs);
     
@@ -173,7 +173,7 @@ export default function App() {
     })).filter(r => r.dish !== undefined);
     
     setRecommendations(mappedRecs);
-    setIsAiLoading(false);
+    setIsProcessing(false);
   };
 
   const handleOrder = (dish: Dish) => {
@@ -252,10 +252,10 @@ export default function App() {
       setTimeout(() => setShowNotification({ show: false, message: '' }), 3000);
       return;
     }
-    setIsAiLoading(true);
+    setIsProcessing(true);
     const picks = await getSurpriseMe(userProfile);
     setSurprisePicks(picks);
-    setIsAiLoading(false);
+    setIsProcessing(false);
   };
 
   const handleVoiceSearch = useCallback(() => {
@@ -314,7 +314,7 @@ export default function App() {
               exit={{ opacity: 0, y: -20 }}
               className="space-y-16"
             >
-              <Hero onSurpriseMe={handleSurpriseMe} isLoading={isAiLoading} />
+              <Hero onSurpriseMe={handleSurpriseMe} isLoading={isProcessing} />
 
               {!currentUser && (
                 <div className="glass dark:glass-dark p-8 rounded-[40px] flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden border border-primary-light/10">
@@ -552,7 +552,7 @@ export default function App() {
 
       {/* Loading Screen */}
       <AnimatePresence>
-        {isAiLoading && (
+        {isProcessing && (
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -564,7 +564,7 @@ export default function App() {
               <div className="absolute inset-0 bg-primary-light/20 blur-2xl animate-pulse" />
             </div>
             <h3 className="text-2xl font-display font-black mt-8">Foodie is thinking...</h3>
-            <p className="text-slate-500 mt-2 font-medium max-w-xs">We are analyzing thousands of flavor combinations to find your perfect match.</p>
+            <p className="text-slate-500 mt-2 font-medium max-w-xs">We are searching for your perfect match.</p>
             <div className="mt-8 flex gap-2">
               <div className="w-2 h-2 bg-primary-light rounded-full animate-bounce [animation-delay:-0.3s]" />
               <div className="w-2 h-2 bg-primary-light rounded-full animate-bounce [animation-delay:-0.15s]" />
