@@ -37,8 +37,9 @@ Filter by your dietary needs: **Veg, Non-Veg, Vegan, or Jain**. You can also sor
 
 | Contributor | Role |
 | :--- | :--- |
-| **ankityadav-08** | [dev] |
-| **Amanjeet Sinha** (@debugging03) | [debug] |
-| **Nikhil Anand** (@Nikhilanand265) | [tester] |
+| **Prince Mehta** (@rajmehta23) | Core Designer \| Dev |
+| **ankityadav-08** | [Role Name] |
+| **Amanjeet Sinha** (@debugging03) | [Role Name] |
+| **Nikhil Anand** (@Nikhilanand265) | [Role Name] |
 
 Designed with ❤️ for a premium food exploration experience.
