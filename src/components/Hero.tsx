@@ -5,9 +5,14 @@ import { Sparkles, Zap, Wand2, Truck, Star } from 'lucide-react';
 interface HeroProps {
   onSurpriseMe: () => void;
   isLoading: boolean;
+  totalOrdersCount: number;
 }
 
-export const Hero: React.FC<HeroProps> = ({ onSurpriseMe, isLoading }) => {
+export const Hero: React.FC<HeroProps> = ({ onSurpriseMe, isLoading, totalOrdersCount }) => {
+  const formattedCount = totalOrdersCount >= 1000
+    ? `${(totalOrdersCount / 1000).toFixed(1)}k+`
+    : `${totalOrdersCount}+`;
+
   return (
     <div className="relative w-full py-12 md:py-20 flex flex-col items-center text-center px-4 overflow-hidden">
       {/* Decorative blurred backgrounds */}
@@ -26,15 +31,17 @@ export const Hero: React.FC<HeroProps> = ({ onSurpriseMe, isLoading }) => {
         </span>
         <h1 className="text-5xl md:text-7xl font-display font-black tracking-tight leading-[0.95] mb-6">
           Every Bite <br />
-          <span className="bg-gradient-to-r from-primary-light via-accent to-primary-dark bg-clip-text text-transparent">Uniquely Yours</span>
+          <span className="bg-gradient-to-r from-primary-light via-accent to-primary-dark bg-clip-text text-transparent">
+            Uniquely Yours
+          </span>
         </h1>
         <p className="max-w-xl text-lg text-slate-500 dark:text-slate-400 mb-10 leading-relaxed">
-          Foodie analyzes your cravings, past orders, and dietary needs to deliver 
+          Foodie analyzes your cravings, past orders, and dietary needs to deliver
           perfect menu recommendations instantly.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <button 
+          <button
             onClick={onSurpriseMe}
             disabled={isLoading}
             className="group relative bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-10 py-5 rounded-3xl font-display font-bold text-lg shadow-2xl hover:shadow-primary-light/20 transition-all active:scale-[0.98] overflow-hidden disabled:opacity-50"
@@ -42,25 +49,24 @@ export const Hero: React.FC<HeroProps> = ({ onSurpriseMe, isLoading }) => {
             <div className="absolute inset-0 bg-gradient-to-r from-primary-light to-accent opacity-0 group-hover:opacity-100 transition-opacity" />
             <span className="relative z-10 flex items-center gap-2">
               <Wand2 className="w-5 h-5" />
-              {isLoading ? "Finding your match..." : "Surprise Me!"}
+              {isLoading ? 'Finding your match...' : 'Surprise Me!'}
             </span>
           </button>
-          
+
+          {/* Dynamic order count — real, not fake */}
           <div className="flex items-center gap-3 px-6 py-4 rounded-3xl bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
-            <div className="flex -space-x-3">
-              {[1, 2, 3, 4].map(i => (
-                <div key={i} className="w-8 h-8 rounded-full border-2 border-white dark:border-slate-900 overflow-hidden">
-                  <img src={`https://i.pravatar.cc/100?img=${i + 10}`} alt="user" className="w-full h-full object-cover" />
-                </div>
-              ))}
+            <div className="flex items-center justify-center w-8 h-8 bg-primary-light/10 rounded-full">
+              <Sparkles className="w-4 h-4 text-primary-light" />
             </div>
-            <span className="text-sm font-bold text-slate-600 dark:text-slate-300">Join 50k+ Foodies</span>
+            <span className="text-sm font-bold text-slate-600 dark:text-slate-300">
+              {formattedCount} orders placed on Foodie
+            </span>
           </div>
         </div>
       </motion.div>
 
       {/* Floating features */}
-      <motion.div 
+      <motion.div
         animate={{ y: [0, -10, 0] }}
         transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
         className="mt-16 hidden lg:flex gap-8 opacity-60"
@@ -71,11 +77,11 @@ export const Hero: React.FC<HeroProps> = ({ onSurpriseMe, isLoading }) => {
         </div>
         <div className="flex items-center gap-2 px-6 py-3 rounded-2xl glass dark:glass-dark">
           <div className="bg-primary-light/20 p-2 rounded-lg"><Truck className="w-4 h-4 text-primary-light" /></div>
-          <span className="font-bold text-sm">Real-time Calc</span>
+          <span className="font-bold text-sm">Live Order Tracking</span>
         </div>
         <div className="flex items-center gap-2 px-6 py-3 rounded-2xl glass dark:glass-dark">
           <div className="bg-accent/20 p-2 rounded-lg"><Star className="w-4 h-4 text-accent" /></div>
-          <span className="font-bold text-sm">Proactive Recommendations</span>
+          <span className="font-bold text-sm">AI Recommendations</span>
         </div>
       </motion.div>
     </div>

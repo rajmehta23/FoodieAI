@@ -57,6 +57,18 @@ export const DishDetailsModal: React.FC<DishDetailsModalProps> = ({
             src={dish.image} 
             alt={dish.name}
             className="w-full h-full object-cover"
+            onError={(e) => {
+              const target = e.target as HTMLImageElement;
+              const category = dish.category.toLowerCase();
+              let fallback = 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=800';
+              
+              if (category.includes('pizza')) fallback = 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&q=80&w=800';
+              else if (category.includes('burger') || category.includes('fast food')) fallback = 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&q=80&w=800';
+              else if (category.includes('dessert') || category.includes('sweet')) fallback = 'https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&q=80&w=800';
+              else if (category.includes('indian')) fallback = 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=800';
+              
+              if (target.src !== fallback) target.src = fallback;
+            }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-slate-900 via-transparent to-transparent" />
           

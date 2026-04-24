@@ -9,7 +9,7 @@ export const MENU_DATA: Dish[] = [
     cuisine: Cuisine.INDIAN,
     dietary: DietaryPreference.VEG,
     spice: SpiceLevel.MEDIUM,
-    image: "https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&q=80&w=800",
+    image: "https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&q=80&w=800",
     category: "Main Course",
     description: "Creamy cottage cheese cubes in a rich tomato-based gravy.",
     ingredients: ["Paneer", "Tomato", "Cream", "Butter", "Spices"],
@@ -25,7 +25,7 @@ export const MENU_DATA: Dish[] = [
     cuisine: Cuisine.INDIAN,
     dietary: DietaryPreference.NON_VEG,
     spice: SpiceLevel.SPICY,
-    image: "https://images.unsplash.com/photo-1563379091339-03b21bc4a6f8?auto=format&fit=crop&q=80&w=800",
+    image: "https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&q=80&w=800",
     category: "Main Course",
     description: "Fragrant basmati rice cooked with succulent chicken and aromatic spices.",
     ingredients: ["Basmati Rice", "Chicken", "Saffron", "Yogurt", "Mint"],
@@ -70,7 +70,7 @@ export const MENU_DATA: Dish[] = [
     cuisine: Cuisine.SOUTH_INDIAN,
     dietary: DietaryPreference.VEG,
     spice: SpiceLevel.MEDIUM,
-    image: "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&q=80&w=800",
+    image: "https://images.unsplash.com/photo-1668236543090-82eba5ee5976?auto=format&fit=crop&q=80&w=800",
     category: "Breakfast",
     description: "Crispy rice crepe stuffed with spiced potato filling."
   },
@@ -106,7 +106,7 @@ export const MENU_DATA: Dish[] = [
     cuisine: Cuisine.INDIAN,
     dietary: DietaryPreference.JAIN,
     spice: SpiceLevel.MEDIUM,
-    image: "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&q=80&w=800",
+    image: "https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&q=80&w=800",
     category: "Main Course",
     description: "Slow-cooked black lentils with cream and butter, prepared without onion and garlic."
   },
@@ -154,7 +154,7 @@ export const MENU_DATA: Dish[] = [
     cuisine: Cuisine.DESSERTS,
     dietary: DietaryPreference.VEG,
     spice: SpiceLevel.MILD,
-    image: "https://images.unsplash.com/photo-1548839140-29a74f123853?auto=format&fit=crop&q=80&w=800",
+    image: "https://images.unsplash.com/photo-1589113730245-8025e1a39641?auto=format&fit=crop&q=80&w=800",
     category: "Dessert",
     description: "Deep-fried milk dumplings soaked in rose-flavored sugar syrup."
   },
@@ -238,7 +238,7 @@ export const MENU_DATA: Dish[] = [
     cuisine: Cuisine.INDIAN,
     dietary: DietaryPreference.NON_VEG,
     spice: SpiceLevel.MEDIUM,
-    image: "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&q=80&w=800",
+    image: "https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?auto=format&fit=crop&q=80&w=800",
     category: "Main Course",
     description: "Tender chicken chunks in a buttery, creamy tomato sauce."
   },
