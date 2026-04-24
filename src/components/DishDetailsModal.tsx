@@ -139,40 +139,43 @@ export const DishDetailsModal: React.FC<DishDetailsModalProps> = ({
                   </span>
                 </div>
 
-                {dish.allergies && dish.allergies.length > 0 && (
-                  <div className="p-4 bg-red-50 dark:bg-red-900/10 rounded-2xl border border-red-100 dark:border-red-900/20">
-                    <div className="flex items-center gap-2 mb-2">
-                      <ShieldAlert className="w-5 h-5 text-red-500" />
-                      <span className="text-sm font-bold text-red-500 uppercase tracking-wider">Allergy Information</span>
-                    </div>
-                    <div className="flex flex-wrap gap-2">
-                      {dish.allergies.map(a => (
-                        <span key={a} className="bg-red-500 text-white text-[10px] font-black px-2 py-0.5 rounded-md uppercase tracking-tighter">
-                          Contains {a}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                )}
               </div>
             </div>
 
-            {dish.ingredients && (
-              <div className="space-y-4">
-                <div className="flex items-center gap-2 text-slate-900 dark:text-white">
-                  <ShoppingBag className="w-5 h-5 text-accent" />
-                  <h3 className="font-display font-bold text-xl">Key Ingredients</h3>
+            <div className="space-y-6">
+              {dish.ingredients && (
+                <div className="space-y-4">
+                  <div className="flex items-center gap-2 text-slate-900 dark:text-white">
+                    <ShoppingBag className="w-5 h-5 text-accent" />
+                    <h3 className="font-display font-bold text-xl">Key Ingredients</h3>
+                  </div>
+                  <div className="grid grid-cols-2 gap-3">
+                    {dish.ingredients.map(ing => (
+                      <div key={ing} className="flex items-center gap-2 text-slate-500 text-sm">
+                        <CheckCircle2 className="w-4 h-4 text-green-500" />
+                        {ing}
+                      </div>
+                    ))}
+                  </div>
                 </div>
-                <div className="grid grid-cols-2 gap-3">
-                  {dish.ingredients.map(ing => (
-                    <div key={ing} className="flex items-center gap-2 text-slate-500 text-sm">
-                      <CheckCircle2 className="w-4 h-4 text-green-500" />
-                      {ing}
-                    </div>
-                  ))}
+              )}
+
+              {dish.allergies && dish.allergies.length > 0 && (
+                <div className="p-4 bg-red-50 dark:bg-red-900/10 rounded-2xl border border-red-100 dark:border-red-900/20">
+                  <div className="flex items-center gap-2 mb-2">
+                    <ShieldAlert className="w-5 h-5 text-red-500" />
+                    <span className="text-sm font-bold text-red-500 uppercase tracking-wider">Allergy Information</span>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {dish.allergies.map(a => (
+                      <span key={a} className="bg-red-500 text-white text-[10px] font-black px-2 py-0.5 rounded-md uppercase tracking-tighter">
+                        Contains {a}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
+            </div>
 
             {dish.platforms && dish.platforms.length > 0 && (
               <div className="col-span-1 md:col-span-2 space-y-4 pt-4">
