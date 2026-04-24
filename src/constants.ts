@@ -4,9 +4,9 @@ export const MENU_DATA: Dish[] = [
   {
     id: "1",
     platforms: [
-      { name: 'Zomato', price: 230, url: 'https://www.zomato.com' },
-      { name: 'Swiggy', price: 227, url: 'https://www.swiggy.com' },
-      { name: 'Uber Eats', price: 253, url: 'https://www.ubereats.com' }
+      { name: 'Zomato', price: 224, url: 'https://www.zomato.com/search?keyword=Butter%20Paneer%20Masala' },
+      { name: 'Swiggy', price: 262, url: 'https://www.swiggy.com/search?query=Butter%20Paneer%20Masala' },
+      { name: 'Uber Eats', price: 230, url: 'https://www.ubereats.com/search?q=Butter%20Paneer%20Masala' }
     ],
     name: "Butter Paneer Masala",
     price: 350,
@@ -25,9 +25,9 @@ export const MENU_DATA: Dish[] = [
   {
     id: "2",
     platforms: [
-      { name: 'Zomato', price: 208, url: 'https://www.zomato.com' },
-      { name: 'Swiggy', price: 264, url: 'https://www.swiggy.com' },
-      { name: 'Uber Eats', price: 255, url: 'https://www.ubereats.com' }
+      { name: 'Zomato', price: 208, url: 'https://www.zomato.com/search?keyword=Chicken%20Biryani' },
+      { name: 'Swiggy', price: 237, url: 'https://www.swiggy.com/search?query=Chicken%20Biryani' },
+      { name: 'Uber Eats', price: 221, url: 'https://www.ubereats.com/search?q=Chicken%20Biryani' }
     ],
     name: "Chicken Biryani",
     price: 450,
@@ -46,9 +46,9 @@ export const MENU_DATA: Dish[] = [
   {
     id: "3",
     platforms: [
-      { name: 'Zomato', price: 211, url: 'https://www.zomato.com' },
-      { name: 'Swiggy', price: 229, url: 'https://www.swiggy.com' },
-      { name: 'Uber Eats', price: 248, url: 'https://www.ubereats.com' }
+      { name: 'Zomato', price: 240, url: 'https://www.zomato.com/search?keyword=Schezwan%20Noodles' },
+      { name: 'Swiggy', price: 227, url: 'https://www.swiggy.com/search?query=Schezwan%20Noodles' },
+      { name: 'Uber Eats', price: 249, url: 'https://www.ubereats.com/search?q=Schezwan%20Noodles' }
     ],
     name: "Schezwan Noodles",
     price: 280,
@@ -67,9 +67,9 @@ export const MENU_DATA: Dish[] = [
   {
     id: "4",
     platforms: [
-      { name: 'Zomato', price: 229, url: 'https://www.zomato.com' },
-      { name: 'Swiggy', price: 234, url: 'https://www.swiggy.com' },
-      { name: 'Uber Eats', price: 210, url: 'https://www.ubereats.com' }
+      { name: 'Zomato', price: 241, url: 'https://www.zomato.com/search?keyword=Margherita%20Pizza' },
+      { name: 'Swiggy', price: 236, url: 'https://www.swiggy.com/search?query=Margherita%20Pizza' },
+      { name: 'Uber Eats', price: 251, url: 'https://www.ubereats.com/search?q=Margherita%20Pizza' }
     ],
     name: "Margherita Pizza",
     price: 320,
@@ -85,9 +85,9 @@ export const MENU_DATA: Dish[] = [
   {
     id: "5",
     platforms: [
-      { name: 'Zomato', price: 205, url: 'https://www.zomato.com' },
-      { name: 'Swiggy', price: 247, url: 'https://www.swiggy.com' },
-      { name: 'Uber Eats', price: 231, url: 'https://www.ubereats.com' }
+      { name: 'Zomato', price: 203, url: 'https://www.zomato.com/search?keyword=Masala%20Dosa' },
+      { name: 'Swiggy', price: 251, url: 'https://www.swiggy.com/search?query=Masala%20Dosa' },
+      { name: 'Uber Eats', price: 235, url: 'https://www.ubereats.com/search?q=Masala%20Dosa' }
     ],
     name: "Masala Dosa",
     price: 180,
@@ -102,9 +102,9 @@ export const MENU_DATA: Dish[] = [
   {
     id: "6",
     platforms: [
-      { name: 'Zomato', price: 201, url: 'https://www.zomato.com' },
-      { name: 'Swiggy', price: 229, url: 'https://www.swiggy.com' },
-      { name: 'Uber Eats', price: 247, url: 'https://www.ubereats.com' }
+      { name: 'Zomato', price: 201, url: 'https://www.zomato.com/search?keyword=Chocochip%20Brownie' },
+      { name: 'Swiggy', price: 235, url: 'https://www.swiggy.com/search?query=Chocochip%20Brownie' },
+      { name: 'Uber Eats', price: 212, url: 'https://www.ubereats.com/search?q=Chocochip%20Brownie' }
     ],
     name: "Chocochip Brownie",
     price: 150,
@@ -119,9 +119,9 @@ export const MENU_DATA: Dish[] = [
   {
     id: "7",
     platforms: [
-      { name: 'Zomato', price: 248, url: 'https://www.zomato.com' },
-      { name: 'Swiggy', price: 238, url: 'https://www.swiggy.com' },
-      { name: 'Uber Eats', price: 241, url: 'https://www.ubereats.com' }
+      { name: 'Zomato', price: 239, url: 'https://www.zomato.com/search?keyword=Kung%20Pao%20Chicken' },
+      { name: 'Swiggy', price: 221, url: 'https://www.swiggy.com/search?query=Kung%20Pao%20Chicken' },
+      { name: 'Uber Eats', price: 242, url: 'https://www.ubereats.com/search?q=Kung%20Pao%20Chicken' }
     ],
     name: "Kung Pao Chicken",
     price: 380,
@@ -136,9 +136,9 @@ export const MENU_DATA: Dish[] = [
   {
     id: "8",
     platforms: [
-      { name: 'Zomato', price: 213, url: 'https://www.zomato.com' },
-      { name: 'Swiggy', price: 229, url: 'https://www.swiggy.com' },
-      { name: 'Uber Eats', price: 257, url: 'https://www.ubereats.com' }
+      { name: 'Zomato', price: 216, url: 'https://www.zomato.com/search?keyword=Dal%20Makhani%20(Jain)' },
+      { name: 'Swiggy', price: 240, url: 'https://www.swiggy.com/search?query=Dal%20Makhani%20(Jain)' },
+      { name: 'Uber Eats', price: 225, url: 'https://www.ubereats.com/search?q=Dal%20Makhani%20(Jain)' }
     ],
     name: "Dal Makhani (Jain)",
     price: 260,
@@ -153,9 +153,9 @@ export const MENU_DATA: Dish[] = [
   {
     id: "9",
     platforms: [
-      { name: 'Zomato', price: 225, url: 'https://www.zomato.com' },
-      { name: 'Swiggy', price: 238, url: 'https://www.swiggy.com' },
-      { name: 'Uber Eats', price: 239, url: 'https://www.ubereats.com' }
+      { name: 'Zomato', price: 202, url: 'https://www.zomato.com/search?keyword=Pasta%20Primavera' },
+      { name: 'Swiggy', price: 232, url: 'https://www.swiggy.com/search?query=Pasta%20Primavera' },
+      { name: 'Uber Eats', price: 214, url: 'https://www.ubereats.com/search?q=Pasta%20Primavera' }
     ],
     name: "Pasta Primavera",
     price: 340,
@@ -170,9 +170,9 @@ export const MENU_DATA: Dish[] = [
   {
     id: "10",
     platforms: [
-      { name: 'Zomato', price: 216, url: 'https://www.zomato.com' },
-      { name: 'Swiggy', price: 250, url: 'https://www.swiggy.com' },
-      { name: 'Uber Eats', price: 216, url: 'https://www.ubereats.com' }
+      { name: 'Zomato', price: 225, url: 'https://www.zomato.com/search?keyword=Idli%20Sambar' },
+      { name: 'Swiggy', price: 260, url: 'https://www.swiggy.com/search?query=Idli%20Sambar' },
+      { name: 'Uber Eats', price: 257, url: 'https://www.ubereats.com/search?q=Idli%20Sambar' }
     ],
     name: "Idli Sambar",
     price: 120,
@@ -187,9 +187,9 @@ export const MENU_DATA: Dish[] = [
   {
     id: "11",
     platforms: [
-      { name: 'Zomato', price: 235, url: 'https://www.zomato.com' },
-      { name: 'Swiggy', price: 231, url: 'https://www.swiggy.com' },
-      { name: 'Uber Eats', price: 236, url: 'https://www.ubereats.com' }
+      { name: 'Zomato', price: 215, url: 'https://www.zomato.com/search?keyword=Double%20Cheese%20Burger' },
+      { name: 'Swiggy', price: 250, url: 'https://www.swiggy.com/search?query=Double%20Cheese%20Burger' },
+      { name: 'Uber Eats', price: 231, url: 'https://www.ubereats.com/search?q=Double%20Cheese%20Burger' }
     ],
     name: "Double Cheese Burger",
     price: 250,
@@ -204,9 +204,9 @@ export const MENU_DATA: Dish[] = [
   {
     id: "12",
     platforms: [
-      { name: 'Zomato', price: 227, url: 'https://www.zomato.com' },
-      { name: 'Swiggy', price: 251, url: 'https://www.swiggy.com' },
-      { name: 'Uber Eats', price: 245, url: 'https://www.ubereats.com' }
+      { name: 'Zomato', price: 211, url: 'https://www.zomato.com/search?keyword=Gulab%20Jamun' },
+      { name: 'Swiggy', price: 264, url: 'https://www.swiggy.com/search?query=Gulab%20Jamun' },
+      { name: 'Uber Eats', price: 231, url: 'https://www.ubereats.com/search?q=Gulab%20Jamun' }
     ],
     name: "Gulab Jamun",
     price: 100,
@@ -221,9 +221,9 @@ export const MENU_DATA: Dish[] = [
   {
     id: "13",
     platforms: [
-      { name: 'Zomato', price: 215, url: 'https://www.zomato.com' },
-      { name: 'Swiggy', price: 239, url: 'https://www.swiggy.com' },
-      { name: 'Uber Eats', price: 239, url: 'https://www.ubereats.com' }
+      { name: 'Zomato', price: 217, url: 'https://www.zomato.com/search?keyword=Loaded%20Veggie%20Sandwich' },
+      { name: 'Swiggy', price: 269, url: 'https://www.swiggy.com/search?query=Loaded%20Veggie%20Sandwich' },
+      { name: 'Uber Eats', price: 244, url: 'https://www.ubereats.com/search?q=Loaded%20Veggie%20Sandwich' }
     ],
     name: "Loaded Veggie Sandwich",
     price: 180,
@@ -238,9 +238,9 @@ export const MENU_DATA: Dish[] = [
   {
     id: "14",
     platforms: [
-      { name: 'Zomato', price: 217, url: 'https://www.zomato.com' },
-      { name: 'Swiggy', price: 267, url: 'https://www.swiggy.com' },
-      { name: 'Uber Eats', price: 233, url: 'https://www.ubereats.com' }
+      { name: 'Zomato', price: 229, url: 'https://www.zomato.com/search?keyword=Prawns%20Fry' },
+      { name: 'Swiggy', price: 223, url: 'https://www.swiggy.com/search?query=Prawns%20Fry' },
+      { name: 'Uber Eats', price: 239, url: 'https://www.ubereats.com/search?q=Prawns%20Fry' }
     ],
     name: "Prawns Fry",
     price: 550,
@@ -255,9 +255,9 @@ export const MENU_DATA: Dish[] = [
   {
     id: "15",
     platforms: [
-      { name: 'Zomato', price: 207, url: 'https://www.zomato.com' },
-      { name: 'Swiggy', price: 252, url: 'https://www.swiggy.com' },
-      { name: 'Uber Eats', price: 219, url: 'https://www.ubereats.com' }
+      { name: 'Zomato', price: 214, url: 'https://www.zomato.com/search?keyword=Jain%20Cheese%20Pizza' },
+      { name: 'Swiggy', price: 267, url: 'https://www.swiggy.com/search?query=Jain%20Cheese%20Pizza' },
+      { name: 'Uber Eats', price: 221, url: 'https://www.ubereats.com/search?q=Jain%20Cheese%20Pizza' }
     ],
     name: "Jain Cheese Pizza",
     price: 360,
@@ -272,9 +272,9 @@ export const MENU_DATA: Dish[] = [
   {
     id: "16",
     platforms: [
-      { name: 'Zomato', price: 248, url: 'https://www.zomato.com' },
-      { name: 'Swiggy', price: 238, url: 'https://www.swiggy.com' },
-      { name: 'Uber Eats', price: 242, url: 'https://www.ubereats.com' }
+      { name: 'Zomato', price: 246, url: 'https://www.zomato.com/search?keyword=Crispy%20Honey%20Chili%20Potato' },
+      { name: 'Swiggy', price: 252, url: 'https://www.swiggy.com/search?query=Crispy%20Honey%20Chili%20Potato' },
+      { name: 'Uber Eats', price: 251, url: 'https://www.ubereats.com/search?q=Crispy%20Honey%20Chili%20Potato' }
     ],
     name: "Crispy Honey Chili Potato",
     price: 240,
@@ -289,9 +289,9 @@ export const MENU_DATA: Dish[] = [
   {
     id: "17",
     platforms: [
-      { name: 'Zomato', price: 207, url: 'https://www.zomato.com' },
-      { name: 'Swiggy', price: 241, url: 'https://www.swiggy.com' },
-      { name: 'Uber Eats', price: 222, url: 'https://www.ubereats.com' }
+      { name: 'Zomato', price: 210, url: 'https://www.zomato.com/search?keyword=Vada%20Pav' },
+      { name: 'Swiggy', price: 224, url: 'https://www.swiggy.com/search?query=Vada%20Pav' },
+      { name: 'Uber Eats', price: 249, url: 'https://www.ubereats.com/search?q=Vada%20Pav' }
     ],
     name: "Vada Pav",
     price: 60,
@@ -306,9 +306,9 @@ export const MENU_DATA: Dish[] = [
   {
     id: "18",
     platforms: [
-      { name: 'Zomato', price: 233, url: 'https://www.zomato.com' },
-      { name: 'Swiggy', price: 234, url: 'https://www.swiggy.com' },
-      { name: 'Uber Eats', price: 237, url: 'https://www.ubereats.com' }
+      { name: 'Zomato', price: 207, url: 'https://www.zomato.com/search?keyword=Hyderabadi%20Shahi%20Tukda' },
+      { name: 'Swiggy', price: 224, url: 'https://www.swiggy.com/search?query=Hyderabadi%20Shahi%20Tukda' },
+      { name: 'Uber Eats', price: 247, url: 'https://www.ubereats.com/search?q=Hyderabadi%20Shahi%20Tukda' }
     ],
     name: "Hyderabadi Shahi Tukda",
     price: 220,
@@ -323,9 +323,9 @@ export const MENU_DATA: Dish[] = [
   {
     id: "19",
     platforms: [
-      { name: 'Zomato', price: 227, url: 'https://www.zomato.com' },
-      { name: 'Swiggy', price: 231, url: 'https://www.swiggy.com' },
-      { name: 'Uber Eats', price: 253, url: 'https://www.ubereats.com' }
+      { name: 'Zomato', price: 200, url: 'https://www.zomato.com/search?keyword=Butter%20Chicken' },
+      { name: 'Swiggy', price: 224, url: 'https://www.swiggy.com/search?query=Butter%20Chicken' },
+      { name: 'Uber Eats', price: 252, url: 'https://www.ubereats.com/search?q=Butter%20Chicken' }
     ],
     name: "Butter Chicken",
     price: 420,
@@ -340,9 +340,9 @@ export const MENU_DATA: Dish[] = [
   {
     id: "20",
     platforms: [
-      { name: 'Zomato', price: 217, url: 'https://www.zomato.com' },
-      { name: 'Swiggy', price: 261, url: 'https://www.swiggy.com' },
-      { name: 'Uber Eats', price: 239, url: 'https://www.ubereats.com' }
+      { name: 'Zomato', price: 232, url: 'https://www.zomato.com/search?keyword=Medu%20Vada' },
+      { name: 'Swiggy', price: 242, url: 'https://www.swiggy.com/search?query=Medu%20Vada' },
+      { name: 'Uber Eats', price: 239, url: 'https://www.ubereats.com/search?q=Medu%20Vada' }
     ],
     name: "Medu Vada",
     price: 150,

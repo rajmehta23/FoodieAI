@@ -149,16 +149,8 @@ export const FoodCard: React.FC<FoodCardProps> = ({
           </div>
         )}
 
-        {/* Price + Add to cart */}
         <div className="mt-1 flex items-center justify-between">
           <span className="text-lg font-display font-black text-slate-800 dark:text-slate-100">₹{dish.price}</span>
-          <button
-            onClick={(e) => { e.stopPropagation(); onOrder(dish); }}
-            className="bg-primary-light hover:bg-primary-dark text-white px-4 py-2 rounded-xl font-bold text-xs transition-all shadow-md hover:shadow-primary-light/30 active:scale-95 flex items-center gap-1.5"
-          >
-            <ShoppingBag className="w-3.5 h-3.5" />
-            Add
-          </button>
         </div>
       </div>
     </motion.div>

@@ -138,14 +138,7 @@ export default function App() {
 
   // ── Cart ───────────────────────────────────────────────────────────────────
   const handleAddToCart = (dish: Dish) => {
-    if (!currentUser) {
-      setActiveSection('auth');
-      notify('Please login to add to cart!');
-      return;
-    }
-    storageService.addToCart(dish);
-    setCart(storageService.getCart());
-    notify(`Added ${dish.name} to cart! 🛒`, 1500);
+    notify('Delivery partner not available now. Please click on the dish to use aggregator links to order.', 5000);
   };
 
   const handleUpdateCartQuantity = (dishId: string, delta: number) => {

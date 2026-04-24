@@ -113,17 +113,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           {currentUser && (
             <>
-              <button
-                onClick={onOpenCart}
-                className="relative p-2 rounded-xl transition-all hover:bg-slate-100 dark:hover:bg-slate-800 text-primary-light"
-              >
-                <ShoppingCart className="w-5 h-5" />
-                {cartCount > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-black w-4 h-4 flex items-center justify-center rounded-full shadow-md">
-                    {cartCount}
-                  </span>
-                )}
-              </button>
+
               <button
                 onClick={onOpenOnboarding}
                 className="p-2 rounded-xl transition-all hover:bg-amber-100 dark:hover:bg-amber-900/20 text-amber-500"

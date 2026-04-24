@@ -204,11 +204,11 @@ export const DishDetailsModal: React.FC<DishDetailsModalProps> = ({
 
           <div className="flex flex-col sm:flex-row items-center gap-4 pt-6">
             <button 
-              onClick={() => onOrder(dish)}
-              className="w-full sm:flex-1 bg-gradient-to-r from-primary-light to-primary-dark text-white font-bold py-5 rounded-[24px] flex items-center justify-center gap-3 transition-all hover:scale-[1.02] active:scale-[0.98] shadow-xl shadow-primary-light/20"
+              disabled
+              className="w-full sm:flex-1 bg-slate-200 dark:bg-slate-800 text-slate-500 dark:text-slate-400 font-bold py-5 rounded-[24px] flex items-center justify-center gap-3 cursor-not-allowed border border-slate-300 dark:border-slate-700"
             >
-              <ShoppingBag className="w-5 h-5" />
-              Add to Cart • ₹{dish.price}
+              <ShoppingBag className="w-5 h-5 opacity-50" />
+              Delivery Unavailable
             </button>
             <button 
               onClick={() => onToggleFavorite(dish.id)}
