@@ -3,13 +3,13 @@ import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-  appId: import.meta.env.VITE_FIREBASE_APP_ID,
-  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
+  apiKey: "AIzaSyA5S26jWAQ5HbBT68t8wKXs-q0fNtynxeo",
+  authDomain: "foodieai-3222e.firebaseapp.com",
+  projectId: "foodieai-3222e",
+  storageBucket: "foodieai-3222e.firebasestorage.app",
+  messagingSenderId: "180156041664",
+  appId: "1:180156041664:web:fe20da82fb219b89b1a025",
+  measurementId: "G-1V0HZ91MJQ"
 };
 
 const app = initializeApp(firebaseConfig);
