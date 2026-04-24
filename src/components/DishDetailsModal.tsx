@@ -118,7 +118,7 @@ export const DishDetailsModal: React.FC<DishDetailsModalProps> = ({
             )}
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+          <div className={`grid grid-cols-1 ${ (dish.ingredients?.length || dish.allergies?.length) ? 'md:grid-cols-2' : '' } gap-10`}>
             <div className="space-y-4">
               <div className="flex items-center gap-2 text-slate-900 dark:text-white">
                 <Info className="w-5 h-5 text-primary-light" />
@@ -142,8 +142,9 @@ export const DishDetailsModal: React.FC<DishDetailsModalProps> = ({
               </div>
             </div>
 
-            <div className="space-y-6">
-              {dish.ingredients && (
+            {(dish.ingredients?.length || dish.allergies?.length) ? (
+              <div className="space-y-6">
+                {dish.ingredients && (
                 <div className="space-y-4">
                   <div className="flex items-center gap-2 text-slate-900 dark:text-white">
                     <ShoppingBag className="w-5 h-5 text-accent" />
@@ -176,6 +177,7 @@ export const DishDetailsModal: React.FC<DishDetailsModalProps> = ({
                 </div>
               )}
             </div>
+            ) : null}
 
             {dish.platforms && dish.platforms.length > 0 && (
               <div className="col-span-1 md:col-span-2 space-y-4 pt-4">
