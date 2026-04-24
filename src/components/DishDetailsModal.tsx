@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, Star, Clock, Flame, Info, CheckCircle2, ShoppingBag, Heart, ChevronRight, ShieldAlert } from 'lucide-react';
+import { X, Star, Clock, Flame, Info, CheckCircle2, ShoppingBag, Heart, ChevronRight, ShieldAlert, ExternalLink } from 'lucide-react';
 import { Dish } from '../types';
 
 interface DishDetailsModalProps {
@@ -169,6 +169,33 @@ export const DishDetailsModal: React.FC<DishDetailsModalProps> = ({
                       <CheckCircle2 className="w-4 h-4 text-green-500" />
                       {ing}
                     </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {dish.platforms && dish.platforms.length > 0 && (
+              <div className="col-span-1 md:col-span-2 space-y-4 pt-4">
+                <div className="flex items-center gap-2 text-slate-900 dark:text-white">
+                  <ExternalLink className="w-5 h-5 text-blue-500" />
+                  <h3 className="font-display font-bold text-xl">Compare Prices</h3>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  {dish.platforms.map(platform => (
+                    <a 
+                      key={platform.name}
+                      href={platform.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-slate-100 dark:border-slate-700 hover:border-blue-500/50 hover:bg-blue-50 dark:hover:bg-blue-900/10 transition-all group"
+                    >
+                      <span className="font-bold text-slate-700 dark:text-slate-300 group-hover:text-blue-600 dark:group-hover:text-blue-400">
+                        {platform.name}
+                      </span>
+                      <span className="font-black text-slate-900 dark:text-white">
+                        ₹{platform.price}
+                      </span>
+                    </a>
                   ))}
                 </div>
               </div>

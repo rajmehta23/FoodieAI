@@ -41,6 +41,12 @@ export interface UserProfile {
   budget: number;
 }
 
+export interface PlatformLink {
+  name: string;
+  price: number;
+  url: string;
+}
+
 export interface Dish {
   id: string;
   name: string;
@@ -56,6 +62,7 @@ export interface Dish {
   calories?: number;
   prepTime?: string;
   allergies?: Allergy[];
+  platforms?: PlatformLink[];
 }
 
 export interface CartItem {
