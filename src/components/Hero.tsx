@@ -5,13 +5,9 @@ import { Sparkles, Zap, Wand2, Truck, Star } from 'lucide-react';
 interface HeroProps {
   onSurpriseMe: () => void;
   isLoading: boolean;
-  totalOrdersCount: number;
 }
 
-export const Hero: React.FC<HeroProps> = ({ onSurpriseMe, isLoading, totalOrdersCount }) => {
-  const formattedCount = totalOrdersCount >= 1000
-    ? `${(totalOrdersCount / 1000).toFixed(1)}k+`
-    : `${totalOrdersCount}+`;
+export const Hero: React.FC<HeroProps> = ({ onSurpriseMe, isLoading }) => {
 
   return (
     <div className="relative w-full py-12 md:py-20 flex flex-col items-center text-center px-4 overflow-hidden">
@@ -52,16 +48,6 @@ export const Hero: React.FC<HeroProps> = ({ onSurpriseMe, isLoading, totalOrders
               {isLoading ? 'Finding your match...' : 'Surprise Me!'}
             </span>
           </button>
-
-          {/* Dynamic order count — real, not fake */}
-          <div className="flex items-center gap-3 px-6 py-4 rounded-3xl bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
-            <div className="flex items-center justify-center w-8 h-8 bg-primary-light/10 rounded-full">
-              <Sparkles className="w-4 h-4 text-primary-light" />
-            </div>
-            <span className="text-sm font-bold text-slate-600 dark:text-slate-300">
-              {formattedCount} orders placed on Foodie
-            </span>
-          </div>
         </div>
       </motion.div>
 
@@ -77,7 +63,7 @@ export const Hero: React.FC<HeroProps> = ({ onSurpriseMe, isLoading, totalOrders
         </div>
         <div className="flex items-center gap-2 px-6 py-3 rounded-2xl glass dark:glass-dark">
           <div className="bg-primary-light/20 p-2 rounded-lg"><Truck className="w-4 h-4 text-primary-light" /></div>
-          <span className="font-bold text-sm">Live Order Tracking</span>
+          <span className="font-bold text-sm">Compare Platforms</span>
         </div>
         <div className="flex items-center gap-2 px-6 py-3 rounded-2xl glass dark:glass-dark">
           <div className="bg-accent/20 p-2 rounded-lg"><Star className="w-4 h-4 text-accent" /></div>

@@ -20,13 +20,10 @@ import {
   serverTimestamp,
 } from "firebase/firestore";
 import { auth, db, googleProvider } from "../firebase";
-import { UserProfile, Order, User, CartItem, Dish } from "../types";
+import { UserProfile, User, Dish } from "../types";
 
 // ── Local-only keys (ephemeral / session data) ──────────────────────────────
 const RECS_CACHE_KEY = "foodie_recs_cache";
-const CART_KEY = "foodie_cart";
-const ORDER_STATUS_KEY = "foodie_order_status";
-const TOTAL_ORDERS_KEY = "foodie_total_orders_count";
 const THEME_KEY = "foodie_theme";
 
 // ── Helper: map Firebase user → our User type ─────────────────────────────
@@ -44,16 +41,6 @@ export interface DeliveryAddress {
   street: string;
   city: string;
   pincode: string;
-}
-
-export interface OrderStatus {
-  orderId: string;
-  dishNames: string[];
-  totalAmount: number;
-  status: "confirmed" | "preparing" | "out_for_delivery" | "delivered";
-  placedAt: number;
-  estimatedMinutes: number;
-  address: DeliveryAddress;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -128,7 +115,6 @@ export const storageService = {
 
   async logout(): Promise<void> {
     await signOut(auth);
-    localStorage.removeItem(CART_KEY);
     localStorage.removeItem(RECS_CACHE_KEY);
   },
 
@@ -171,50 +157,6 @@ export const storageService = {
     await updateDoc(doc(db, "users", uid), { address });
   },
 
-  // ── Firestore: Orders ────────────────────────────────────────────────────
-
-  async getOrders(): Promise<Order[]> {
-    const uid = auth.currentUser?.uid;
-    if (!uid) return [];
-    try {
-      const q = query(
-        collection(db, "users", uid, "orders"),
-        orderBy("timestamp", "desc")
-      );
-      const snap = await getDocs(q);
-      return snap.docs.map((d) => ({ id: d.id, ...d.data() } as Order));
-    } catch {
-      return [];
-    }
-  },
-
-  async addOrder(order: Order): Promise<void> {
-    const uid = auth.currentUser?.uid;
-    if (!uid) return;
-    await addDoc(collection(db, "users", uid, "orders"), {
-      dishId: order.dishId,
-      dishName: order.dishName,
-      price: order.price,
-      timestamp: order.timestamp,
-    });
-    const count = parseInt(localStorage.getItem(TOTAL_ORDERS_KEY) ?? "0", 10);
-    localStorage.setItem(TOTAL_ORDERS_KEY, String(count + 1));
-  },
-
-  getTotalOrdersCount(): number {
-    const base = 49230;
-    const count = parseInt(localStorage.getItem(TOTAL_ORDERS_KEY) ?? "0", 10);
-    return base + count;
-  },
-
-  async clearHistory(): Promise<void> {
-    const uid = auth.currentUser?.uid;
-    if (!uid) return;
-    const snap = await getDocs(collection(db, "users", uid, "orders"));
-    const deletions = snap.docs.map((d) => deleteDoc(d.ref));
-    await Promise.all(deletions);
-  },
-
   // ── Firestore: Favorites ─────────────────────────────────────────────────
 
   async getFavorites(): Promise<string[]> {
@@ -239,33 +181,6 @@ export const storageService = {
     return favorites;
   },
 
-  // ── localStorage: Cart (session) ─────────────────────────────────────────
-
-  getCart(): CartItem[] {
-    const data = localStorage.getItem(CART_KEY);
-    return data ? JSON.parse(data) : [];
-  },
-
-  saveCart(cart: CartItem[]): void {
-    localStorage.setItem(CART_KEY, JSON.stringify(cart));
-  },
-
-  addToCart(dish: Dish): void {
-    const cart = this.getCart();
-    const existing = cart.find((item) => item.id === dish.id);
-    if (existing) existing.quantity += 1;
-    else cart.push({ id: dish.id, dish, quantity: 1 });
-    this.saveCart(cart);
-  },
-
-  removeFromCart(dishId: string): void {
-    this.saveCart(this.getCart().filter((item) => item.id !== dishId));
-  },
-
-  clearCart(): void {
-    localStorage.removeItem(CART_KEY);
-  },
-
   // ── localStorage: Recommendations Cache (session) ─────────────────────────
 
   getRecommendationsCache(): { dishId: string; reason: string; badge: string }[] | null {
@@ -279,29 +194,6 @@ export const storageService = {
 
   clearRecommendationsCache(): void {
     localStorage.removeItem(RECS_CACHE_KEY);
-  },
-
-  // ── localStorage: Active Order Status (session) ───────────────────────────
-
-  setActiveOrderStatus(status: OrderStatus): void {
-    localStorage.setItem(ORDER_STATUS_KEY, JSON.stringify(status));
-  },
-
-  getActiveOrderStatus(): OrderStatus | null {
-    const data = localStorage.getItem(ORDER_STATUS_KEY);
-    return data ? JSON.parse(data) : null;
-  },
-
-  updateActiveOrderStatus(newStatus: OrderStatus["status"]): void {
-    const current = this.getActiveOrderStatus();
-    if (current) {
-      current.status = newStatus;
-      localStorage.setItem(ORDER_STATUS_KEY, JSON.stringify(current));
-    }
-  },
-
-  clearActiveOrderStatus(): void {
-    localStorage.removeItem(ORDER_STATUS_KEY);
   },
 
   // ── localStorage: Theme ───────────────────────────────────────────────────

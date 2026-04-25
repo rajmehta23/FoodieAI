@@ -14,7 +14,6 @@ interface UserProfileProps {
   onLogout: () => void;
   onEditPreferences: () => void;
   onViewFavorites: () => void;
-  onViewHistory: () => void;
   onNotify: (message: string) => void;
 }
 
@@ -24,7 +23,6 @@ export const UserProfile: React.FC<UserProfileProps> = ({
   onLogout,
   onEditPreferences,
   onViewFavorites,
-  onViewHistory,
   onNotify
 }) => {
   const [isEditingName, setIsEditingName] = useState(false);
@@ -302,7 +300,7 @@ export const UserProfile: React.FC<UserProfileProps> = ({
       </div>
 
       {/* Quick Stats & Actions */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <button 
           onClick={onViewFavorites}
           className="glass dark:glass-dark p-6 rounded-[32px] flex items-center gap-4 hover:scale-[1.02] transition-transform text-left border border-white/10"
@@ -316,18 +314,7 @@ export const UserProfile: React.FC<UserProfileProps> = ({
           </div>
         </button>
 
-        <button 
-          onClick={onViewHistory}
-          className="glass dark:glass-dark p-6 rounded-[32px] flex items-center gap-4 hover:scale-[1.02] transition-transform text-left border border-white/10"
-        >
-          <div className="p-3 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-500 rounded-2xl">
-            <History className="w-6 h-6" />
-          </div>
-          <div>
-            <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Journal</p>
-            <p className="font-bold text-lg">Order History</p>
-          </div>
-        </button>
+
 
         <button 
           onClick={onLogout}

@@ -8,7 +8,6 @@ interface SurpriseMeResultsProps {
   picks: { dishId: string; reason: string }[];
   dishes: Dish[];
   onClose: () => void;
-  onOrder: (dish: Dish) => void;
   onToggleFavorite: (id: string) => void;
   favorites: string[];
   onExplore: (dish: Dish) => void;
@@ -18,7 +17,6 @@ export const SurpriseMeResults: React.FC<SurpriseMeResultsProps> = ({
   picks, 
   dishes, 
   onClose, 
-  onOrder,
   onToggleFavorite,
   favorites,
   onExplore
@@ -71,7 +69,6 @@ export const SurpriseMeResults: React.FC<SurpriseMeResultsProps> = ({
                 </div>
                 <FoodCard 
                   dish={dish} 
-                  onOrder={onOrder} 
                   onToggleFavorite={onToggleFavorite}
                   onExplore={onExplore}
                   isFavorite={favorites.includes(dish.id)}

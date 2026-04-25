@@ -8,7 +8,6 @@ interface FoodCardProps {
   recommendationReason?: string;
   badge?: string;
   isFavorite?: boolean;
-  onOrder: (dish: Dish) => void;
   onToggleFavorite: (id: string) => void;
   onExplore: (dish: Dish) => void;
 }
@@ -38,7 +37,6 @@ export const FoodCard: React.FC<FoodCardProps> = ({
   recommendationReason,
   badge,
   isFavorite,
-  onOrder,
   onToggleFavorite,
   onExplore,
 }) => {

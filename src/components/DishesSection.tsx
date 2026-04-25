@@ -7,7 +7,6 @@ import { ShoppingBag, Search, SlidersHorizontal, ChevronRight, X } from 'lucide-
 interface DishesSectionProps {
   dishes: Dish[];
   favorites: string[];
-  onOrder: (dish: Dish) => void;
   onToggleFavorite: (dishId: string) => void;
   onExplore: (dish: Dish) => void;
   searchQuery: string;
@@ -17,7 +16,6 @@ interface DishesSectionProps {
 export const DishesSection: React.FC<DishesSectionProps> = ({
   dishes,
   favorites,
-  onOrder,
   onToggleFavorite,
   onExplore,
   searchQuery,
@@ -191,7 +189,6 @@ export const DishesSection: React.FC<DishesSectionProps> = ({
               >
                 <FoodCard 
                   dish={dish} 
-                  onOrder={onOrder} 
                   onToggleFavorite={onToggleFavorite}
                   onExplore={onExplore}
                   isFavorite={favorites.includes(dish.id)}
