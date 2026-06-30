@@ -9,7 +9,7 @@ Welcome to **Foodie**, the ultimate food discovery and price comparison platform
 **Try the live app here:**
 ### [👉 Click to Open Foodie App 👈](https://rajmehta23.github.io/FoodieAI/)
 
----
+----------------
 
 ## ✨ Why You'll Love Foodie
 
