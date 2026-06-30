@@ -89,6 +89,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
         </div>
 
+        <div className="flex items-center gap-2">
           {/* Live order tracker button */}
           {currentUser && activeOrderStatus && activeOrderStatus !== 'delivered' && (
             <motion.button
