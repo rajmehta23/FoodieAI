@@ -69,22 +69,28 @@ export default function App() {
       if (fbUser) {
         const appUser: User = { id: fbUser.uid, email: fbUser.email ?? '', name: fbUser.displayName ?? 'Foodie User' };
         setCurrentUser(appUser);
-        // Load cloud data for this user
-        const [profile, fetchedFavs, fetchedOrders] = await Promise.all([
-          storageService.getProfile(),
-          storageService.getFavorites(),
-          storageService.getOrders(),
-        ]);
-        setUserProfile(profile);
-        setFavorites(fetchedFavs);
-        setOrders(fetchedOrders);
         
-        // Restore cart and active orders
+        // Restore cart and active orders from localStorage instantly
         setCart(storageService.getCart());
         setActiveOrder(storageService.getActiveOrderStatus());
         setTotalOrdersCount(storageService.getTotalOrdersCount());
         
-        if (profile) loadRecommendations(profile);
+        // Dismiss the splash screen immediately
+        setAuthLoading(false);
+        
+        // Load cloud data for this user in the background
+        Promise.all([
+          storageService.getProfile(),
+          storageService.getFavorites(),
+          storageService.getOrders(),
+        ]).then(([profile, fetchedFavs, fetchedOrders]) => {
+          setUserProfile(profile);
+          setFavorites(fetchedFavs);
+          setOrders(fetchedOrders);
+          if (profile) loadRecommendations(profile);
+        }).catch(err => {
+          console.error("Background data sync failed:", err);
+        });
       } else {
         setCurrentUser(null);
         setUserProfile(null);
@@ -93,8 +99,8 @@ export default function App() {
         setCart([]);
         setActiveOrder(null);
         setOrders([]);
+        setAuthLoading(false);
       }
-      setAuthLoading(false);
     });
     return () => unsubscribe();
   }, []);
