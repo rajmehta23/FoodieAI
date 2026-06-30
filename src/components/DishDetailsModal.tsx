@@ -6,6 +6,7 @@ import { Dish } from '../types';
 interface DishDetailsModalProps {
   dish: Dish | null;
   onClose: () => void;
+  onOrder: (dish: Dish) => void;
   onToggleFavorite: (id: string) => void;
   isFavorite: boolean;
 }
@@ -13,6 +14,7 @@ interface DishDetailsModalProps {
 export const DishDetailsModal: React.FC<DishDetailsModalProps> = ({
   dish,
   onClose,
+  onOrder,
   onToggleFavorite,
   isFavorite
 }) => {
@@ -205,10 +207,17 @@ export const DishDetailsModal: React.FC<DishDetailsModalProps> = ({
             )}
           </div>
 
-          <div className="flex flex-col sm:flex-row items-center justify-end gap-4 pt-6">
+          <div className="flex flex-col sm:flex-row items-center gap-4 pt-6">
+            <button 
+              onClick={() => onOrder(dish)}
+              className="w-full sm:flex-1 bg-gradient-to-r from-primary-light to-primary-dark text-white font-bold py-5 rounded-[24px] flex items-center justify-center gap-3 transition-all hover:scale-[1.02] active:scale-[0.98] shadow-xl shadow-primary-light/20"
+            >
+              <ShoppingBag className="w-5 h-5" />
+              Add to Cart • ₹{dish.price}
+            </button>
             <button 
               onClick={() => onToggleFavorite(dish.id)}
-              className={`w-full sm:w-1/2 px-8 py-5 rounded-[24px] font-bold border-2 transition-all flex items-center justify-center gap-2 ${isFavorite ? 'bg-red-500/10 border-red-500 text-red-500' : 'bg-slate-50 dark:bg-slate-800 border-slate-100 dark:border-slate-700 hover:border-red-500/30'}`}
+              className={`w-full sm:w-auto px-8 py-5 rounded-[24px] font-bold border-2 transition-all flex items-center justify-center gap-2 ${isFavorite ? 'bg-red-500/10 border-red-500 text-red-500' : 'bg-slate-50 dark:bg-slate-800 border-slate-100 dark:border-slate-700 hover:border-red-500/30'}`}
             >
               <Heart className={`w-5 h-5 ${isFavorite ? 'fill-current' : ''}`} />
               {isFavorite ? 'Favorited' : 'Save'}

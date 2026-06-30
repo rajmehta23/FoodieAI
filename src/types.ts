@@ -65,8 +65,23 @@ export interface Dish {
   platforms?: PlatformLink[];
 }
 
+export interface CartItem {
+  id: string;
+  dish: Dish;
+  quantity: number;
+}
+
+export interface Order {
+  id: string;
+  dishId: string;
+  dishName: string;
+  price: number;
+  timestamp: number;
+}
+
 export interface Recommendation {
   dish: Dish;
   reason: string;
   badge: "For You" | "Matches Spice Preference" | "Popular in Cuisine" | "Budget Friendly" | "Top Pick";
 }
+

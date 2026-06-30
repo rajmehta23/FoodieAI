@@ -7,6 +7,7 @@ import { ShoppingBag, Search, SlidersHorizontal, ChevronRight, X } from 'lucide-
 interface DishesSectionProps {
   dishes: Dish[];
   favorites: string[];
+  onOrder: (dish: Dish) => void;
   onToggleFavorite: (dishId: string) => void;
   onExplore: (dish: Dish) => void;
   searchQuery: string;
@@ -16,6 +17,7 @@ interface DishesSectionProps {
 export const DishesSection: React.FC<DishesSectionProps> = ({
   dishes,
   favorites,
+  onOrder,
   onToggleFavorite,
   onExplore,
   searchQuery,
@@ -60,10 +62,20 @@ export const DishesSection: React.FC<DishesSectionProps> = ({
           <p className="text-slate-500 font-medium">Explore over {dishes.length} hand-crafted dishes chosen for quality and taste.</p>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 w-full md:w-auto">
+          <div className="relative flex-1 md:hidden">
+            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search dishes..."
+              className="w-full bg-white dark:bg-slate-800/80 border border-slate-100 dark:border-slate-700/50 rounded-2xl py-3 pl-10 pr-4 text-sm focus:ring-2 focus:ring-primary-light/50 outline-none"
+            />
+          </div>
           <button 
             onClick={() => setShowFilters(!showFilters)}
-            className={`flex items-center gap-2 px-6 py-3 rounded-2xl font-bold transition-all border-2 ${showFilters ? 'bg-slate-900 text-white border-slate-900' : 'bg-white dark:bg-slate-800 border-slate-100 dark:border-slate-700/50 hover:border-primary-light/50'}`}
+            className={`flex items-center gap-2 px-6 py-3 rounded-2xl font-bold transition-all border-2 shrink-0 ${showFilters ? 'bg-slate-900 text-white border-slate-900' : 'bg-white dark:bg-slate-800 border-slate-100 dark:border-slate-700/50 hover:border-primary-light/50'}`}
           >
             <SlidersHorizontal className="w-4 h-4" />
             Filters
@@ -189,6 +201,7 @@ export const DishesSection: React.FC<DishesSectionProps> = ({
               >
                 <FoodCard 
                   dish={dish} 
+                  onOrder={onOrder}
                   onToggleFavorite={onToggleFavorite}
                   onExplore={onExplore}
                   isFavorite={favorites.includes(dish.id)}

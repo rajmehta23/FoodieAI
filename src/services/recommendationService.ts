@@ -5,7 +5,12 @@ import { MENU_DATA } from "../constants";
 // Lazy initialization to prevent crashing if key is missing during build
 let engineInstance: GoogleGenAI | null = null;
 const getEngine = () => {
-  const key = process.env.GEMINI_API_KEY;
+  let key: string | undefined;
+  try {
+    key = import.meta.env.VITE_GEMINI_API_KEY || (typeof process !== 'undefined' ? process.env.GEMINI_API_KEY : undefined);
+  } catch {
+    key = typeof process !== 'undefined' ? process.env.GEMINI_API_KEY : undefined;
+  }
   if (!key) {
     console.warn("Recommendation key is missing. Features will use enhanced fallback logic.");
     return null;
